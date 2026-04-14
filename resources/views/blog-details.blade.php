@@ -20,7 +20,7 @@
 
     <span class="text-[10px] opacity-60"><i class="fa-solid fa-chevron-right"></i></span>
 
-    <span class="text-[#FF71A8] font-bold">Evening Gown Trends for Spring 2026</span>
+    <span class="text-[#FF71A8] font-bold">{{$blogData->title}}</span>
 
   </div>
 </div>
@@ -34,75 +34,41 @@
 
 <section class="lg:px-12 px-4 pt-4 lg:pb-14  pb-8">
   <div>
-    <span class=" bg-[#FF71A8] inline-block px-3 rounded-md py-1 text-[10px] lg:text-[12px] font-medium text-white">Bride Tips</span>
+    <span class=" bg-[#FF71A8] inline-block px-3 rounded-md py-1 text-[10px] lg:text-[12px] font-medium text-white">{{$blogData->category->name}}</span>
 
-    <h2 class="lg:text-[42px] text-[20px] font-medium mt-1">The Ultimate Guide to Choosing Your Wedding Gown</h2>
+    <h2 class="lg:text-[42px] text-[20px] font-medium mt-1">{{$blogData->title}}</h2>
     <div class="flex mt-3 lg:gap-6 justify-between lg:justify-start">
       <div class="text-[#525252]  font-medium flex gap-1.5 items-start">
         <i class="fa-solid fa-user lg:text-[14px] mt-0.5 lg:mt-0 text-[12px]"></i>
-        <p class="lg:text-[14px] text-[12px]">Sarah Mitchell</p>
+        <p class="lg:text-[14px] text-[12px]">{{$blogData->author}}</p>
       </div>
 
       <div class="text-[#525252]  font-medium flex gap-1.5 items-start">
         <i class="fa-solid fa-calendar-days lg:text-[14px] mt-0.5 lg:mt-0 text-[12px]"></i>
-        <p class="lg:text-[14px] text-[12px]">March 15, 2025</p>
+        <p class="lg:text-[14px] text-[12px]">{{ $blogData->publish_date->format('F d, Y') }}</p>
       </div>
 
       <div class="text-[#525252]  font-medium flex gap-1.5 items-start">
         <i class="fa-regular fa-clock lg:text-[14px] mt-0.5 lg:mt-0 text-[12px]"></i>
-        <p class="lg:text-[14px] text-[12px]">8 min read</p>
+        <p class="lg:text-[14px] text-[12px]">{{$blogData->read_time}} min read</p>
       </div>
     </div>
 
     <div class="mt-4">
-      <img class="lg:h-[550px] h-[250px] w-full rounded-md lg:rounded-3xl object-cover" src="./images/video.jpg" alt="">
+      <img class="lg:h-[550px] h-[250px] w-full rounded-md lg:rounded-3xl object-cover" src="{{url('uploads/'.$blogData->thumbnail)}}" alt="{{ $blogData->title}}">
     </div>
 
     <div class="mt-4">
-      <p class="font-medium text-[12px] lg:text-[15px]">Finding the perfect wedding gown is one of the most exciting parts of wedding planning. It's a journey that should be enjoyable, personal, and ultimately lead you to a dress that makes you feel absolutely stunning on your special day.</p>
+      <p class="font-medium text-[12px] lg:text-[15px]">{!!$blogData->content!!}</p>
 
-      <div class="mt-6">
-        <h2 class="lg:text-[28px] text-[18px] font-medium">Start Early, But Not Too Early</h2>
-        <p class="font-medium text-[12px] lg:text-[15px] mt-2">Begin your search 8-12 months before your wedding date. This gives you enough time to browse different styles, order your dress, and schedule necessary alterations. Starting too early might mean falling in love with a style that's no longer available, while starting too late can add unnecessary stress.</p>
-      </div>
 
-      <div class="mt-6">
-        <h2 class="lg:text-[28px] text-[18px] font-medium">Know Your Budget</h2>
-        <p class="font-medium text-[12px] lg:text-[15px] mt-2">Set a realistic budget before you start shopping, and remember to account for alterations, accessories, and preservation. A good rule of thumb is to allocate about 10-15% of your total wedding budget to your dress. Don't forget about undergarments, shoes, and jewelry when planning your bridal look budget.</p>
-      </div>
 
-      <div class="mt-6">
-        <h2 class="lg:text-[28px] text-[18px] font-medium">Understanding Silhouettes</h2>
-        <p class="font-medium text-[12px] lg:text-[15px] mt-2">Different body types are complemented by different dress silhouettes:</p>
 
-        <ul class="mt-3 font-medium text-[12px] lg:text-[15px] list-disc pl-6 space-y-2">
-          <li>A-Line: Universally flattering, fitted at the waist and flowing to the ground</li>
-          <li>Ball Gown: Classic princess style with a fitted bodice and full skirt</li>
-          <li>Mermaid: Fitted through the body and flares at the knee</li>
-          <li>Sheath: Straight silhouette that skims the body</li>
-          <li>Empire: High waistline just below the bust</li>
-        </ul>
-      </div>
-
-      <div class="mt-6">
-        <h2 class="lg:text-[28px] text-[18px] font-medium">The Shopping Experience</h2>
-        <p class="font-medium text-[12px] lg:text-[15px] mt-2">Create a mood board with dresses you love. Pay attention to common elements—is it the neckline, the silhouette, or the fabric that catches your eye? Understanding what draws you to certain styles will help you communicate your vision to bridal consultants.</p>
-      </div>
-
-      <div class="mt-6">
-        <h2 class="lg:text-[22px] text-[18px] font-medium">The Shopping Experience</h2>
-
-        <div class="mt-3 space-x-1">
-          <span class="border-[#B5B5B5] border inline-block px-3 rounded-md py-1 text-[10px] lg:text-[12px] font-medium ">WeddingBridal</span>
-
-          <span class="border-[#B5B5B5] border inline-block px-3 rounded-md py-1 text-[10px] lg:text-[12px] font-medium ">TipsDress </span>
-
-          <span class="border-[#B5B5B5] border inline-block px-3 rounded-md py-1 text-[10px] lg:text-[12px] font-medium ">ShoppingWedding</span>
-
-          <span class="border-[#B5B5B5] border inline-block px-3 rounded-md py-1 text-[10px] lg:text-[12px] font-medium ">Planning</span>
-        </div>
 
       </div>
+
+
+
     </div>
   </div>
 </section>
@@ -136,7 +102,7 @@
 
     <div class="mt-8 space-y-4">
       <div class="border-[#CCCCCC] flex gap-3 border rounded-md px-4 py-4">
-        <img class="lg:min-w-[45px] min-w-[40px] lg:w-[45px] w-[40px] object-cover rounded-full lg:h-[45px] h-[40px]" src="./images/user-1.jpg" alt="">
+        <img class="lg:min-w-[45px] min-w-[40px] lg:w-[45px] w-[40px] object-cover rounded-full lg:h-[45px] h-[40px]" src="{{url('images/user-1.jpg')}}" alt="">
         <div class="mt-1 flex-1">
           <div class="flex justify-between">
             <p class="lg:text-[15px] text-[13px] font-medium">Emily Johnson</p>
@@ -147,7 +113,7 @@
       </div>
 
       <div class="border-[#CCCCCC] flex gap-3 border rounded-md px-4 py-4">
-        <img class="lg:min-w-[45px] min-w-[40px] lg:w-[45px] w-[40px] object-cover rounded-full lg:h-[45px] h-[40px]" src="./images/user-1.jpg" alt="">
+        <img class="lg:min-w-[45px] min-w-[40px] lg:w-[45px] w-[40px] object-cover rounded-full lg:h-[45px] h-[40px]" src="{{url('images/user-1.jpg')}}" alt="">
         <div class="mt-1 flex-1">
           <div class="flex justify-between">
             <p class="lg:text-[15px] text-[13px] font-medium">Emily Johnson</p>
@@ -165,83 +131,43 @@
   </div>
 
   <div class="grid lg:grid-cols-3 grid-cols-2 lg:gap-8 gap-3 mt-3">
+    {{-- first  --}}
+    @foreach ($blog as $manyBlog)
+
+
     <div class="col-span-1 border-[#CCCCCC] border rounded-md lg:rounded-2xl">
-      <img class="lg:h-[260px] h-[180px] object-cover rounded-t-md lg:rounded-t-2xl object-center  w-full" src="./images/product-2.jpg" alt="">
+      <img class="lg:h-[260px] h-[180px] object-cover rounded-t-md lg:rounded-t-2xl object-center  w-full" src="{{url('uploads/'.$manyBlog->thumbnail)}}" alt="">
 
       <div class="lg:px-5 px-3 py-3">
-        <p class="lg:text-[12px] text-[10px] font-medium inline-block px-4 py-1 border-[#DBDBDB] border rounded-lg">Fashion Trends</p>
+        <p class="lg:text-[12px] text-[10px] font-medium inline-block px-4 py-1 border-[#DBDBDB] border rounded-lg">
+              {{$manyBlog->category->name}}
+        </p>
 
-        <h2 class="lg:text-[17px] text-[13px] mt-3 font-medium">Evening Gown Trends for Spring 2025</h2>
+        <h2 class="lg:text-[17px] text-[13px] mt-3 font-medium">{{$manyBlog->title}}</h2>
 
-        <p class="text-[#686868] mt-1 text-[11px] lg:text-[13px] font-medium">Stay ahead of the fashion curve with our comprehensive guide to this season's most stunning evening gown styles and colors.</p>
+        <p class="text-[#686868] mt-1 text-[11px] lg:text-[13px] font-medium">{!! Str::limit($manyBlog->content, 100) !!}</p>
 
         <div class="mt-3 lg:flex gap-6">
           <div class="text-[#525252] flex lg:gap-2 gap-1 items-center  lg:items-start">
             <i class="fa-solid fa-calendar-days lg:text-[14px] text-[12px]"></i>
-            <p class="lg:text-[13px] text-[12px]">March 15, 2025</p>
+            <p class="lg:text-[13px] text-[12px]">{{ $manyBlog->publish_date->format('F d, Y') }}</p>
           </div>
 
           <div class="text-[#525252] flex lg:gap-2 gap-1 items-start">
             <i class="fa-regular fa-clock lg:text-[14px] mt-0.5 text-[12px]"></i>
-            <p class="lg:text-[13px] text-[12px]">8 min read</p>
+            <p class="lg:text-[13px] text-[12px]">{{$manyBlog->read_time}} min read</p>
           </div>
         </div>
 
-        <a href="#" class="lg:text-[14px] text-[12px] inline-block lg:mt-4 mt-3 font-medium text-[#FF71A8]">Read More <i class="fa-solid fa-arrow-right text-[13px] ml-1"></i></a>
+        <a href="{{url('blog-details/'.$manyBlog->slug)}}" class="lg:text-[14px] text-[12px] inline-block lg:mt-4 mt-3 font-medium text-[#FF71A8]">Read More <i class="fa-solid fa-arrow-right text-[13px] ml-1"></i></a>
       </div>
     </div>
 
-    <div class="col-span-1 border-[#CCCCCC] border rounded-md lg:rounded-2xl">
-      <img class="lg:h-[260px] h-[180px] object-cover rounded-t-md lg:rounded-t-2xl object-center  w-full" src="./images/product-2.jpg" alt="">
+    @endforeach
 
-      <div class="lg:px-5 px-3 py-3">
-        <p class="lg:text-[12px] text-[10px] font-medium inline-block px-4 py-1 border-[#DBDBDB] border rounded-lg">Fashion Trends</p>
 
-        <h2 class="lg:text-[17px] text-[13px] mt-3 font-medium">Evening Gown Trends for Spring 2025</h2>
 
-        <p class="text-[#686868] mt-1 text-[11px] lg:text-[13px] font-medium">Stay ahead of the fashion curve with our comprehensive guide to this season's most stunning evening gown styles and colors.</p>
 
-        <div class="mt-3 lg:flex gap-6">
-          <div class="text-[#525252] flex lg:gap-2 gap-1 items-center  lg:items-start">
-            <i class="fa-solid fa-calendar-days lg:text-[14px] text-[12px]"></i>
-            <p class="lg:text-[13px] text-[12px]">March 15, 2025</p>
-          </div>
-
-          <div class="text-[#525252] flex lg:gap-2 gap-1 items-start">
-            <i class="fa-regular fa-clock lg:text-[14px] mt-0.5 text-[12px]"></i>
-            <p class="lg:text-[13px] text-[12px]">8 min read</p>
-          </div>
-        </div>
-
-        <a href="#" class="lg:text-[14px] text-[12px] inline-block lg:mt-4 mt-3 font-medium text-[#FF71A8]">Read More <i class="fa-solid fa-arrow-right text-[13px] ml-1"></i></a>
-      </div>
-    </div>
-
-    <div class="col-span-1 border-[#CCCCCC] border rounded-md lg:rounded-2xl">
-      <img class="lg:h-[260px] h-[180px] object-cover rounded-t-md lg:rounded-t-2xl object-center  w-full" src="./images/product-2.jpg" alt="">
-
-      <div class="lg:px-5 px-3 py-3">
-        <p class="lg:text-[12px] text-[10px] font-medium inline-block px-4 py-1 border-[#DBDBDB] border rounded-lg">Fashion Trends</p>
-
-        <h2 class="lg:text-[17px] text-[13px] mt-3 font-medium">Evening Gown Trends for Spring 2025</h2>
-
-        <p class="text-[#686868] mt-1 text-[11px] lg:text-[13px] font-medium">Stay ahead of the fashion curve with our comprehensive guide to this season's most stunning evening gown styles and colors.</p>
-
-        <div class="mt-3 lg:flex gap-6">
-          <div class="text-[#525252] flex lg:gap-2 gap-1 items-center  lg:items-start">
-            <i class="fa-solid fa-calendar-days lg:text-[14px] text-[12px]"></i>
-            <p class="lg:text-[13px] text-[12px]">March 15, 2025</p>
-          </div>
-
-          <div class="text-[#525252] flex lg:gap-2 gap-1 items-start">
-            <i class="fa-regular fa-clock lg:text-[14px] mt-0.5 text-[12px]"></i>
-            <p class="lg:text-[13px] text-[12px]">8 min read</p>
-          </div>
-        </div>
-
-        <a href="#" class="lg:text-[14px] text-[12px] inline-block lg:mt-4 mt-3 font-medium text-[#FF71A8]">Read More <i class="fa-solid fa-arrow-right text-[13px] ml-1"></i></a>
-      </div>
-    </div>
 
 
 

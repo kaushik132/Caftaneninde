@@ -71,6 +71,17 @@
   <a href="#" data-tab="addresses" class="mobile-tab-item"><i class="fa-solid fa-location-dot"></i> Addresses</a>
   <a href="#" data-tab="settings" class="mobile-tab-item"><i class="fa-solid fa-gear"></i> Settings</a>
   <a href="#" data-tab="security" class="mobile-tab-item"><i class="fa-solid fa-lock"></i> Security</a>
+    @auth
+      <a href="{{ route('logout') }}" class="mobile-tab-item"
+         onclick="event.preventDefault(); document.getElementById('mobile-logout-form').submit();">
+        <i class="fa fa-sign-out"></i> Logout
+      </a>
+      <form id="mobile-logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
+        @csrf
+      </form>
+    @else
+      <a href="{{ route('login') }}" class="mobile-tab-item"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+    @endauth
 </nav>
 
 <!-- Main -->
@@ -84,6 +95,21 @@
       <li><a href="#" data-tab="addresses" class="sidebar-link text-[15px] font-medium block px-5 py-3 rounded-md"><i class="fa-solid fa-location-dot mr-1"></i> Addresses</a></li>
       <li><a href="#" data-tab="settings" class="sidebar-link text-[15px] font-medium block px-5 py-3 rounded-md"><i class="fa-solid fa-gear mr-1"></i> Account Setting</a></li>
       <li><a href="#" data-tab="security" class="sidebar-link text-[15px] font-medium block px-5 py-3 rounded-md"><i class="fa-solid fa-lock mr-1"></i> Security</a></li>
+      <li>
+        @auth
+          <a href="{{ route('logout') }}" class="sidebar-link text-[15px] font-medium block px-5 py-3 rounded-md"
+             onclick="event.preventDefault(); document.getElementById('sidebar-logout-form').submit();">
+            <i class="fa fa-sign-out"></i> Logout
+          </a>
+          <form id="sidebar-logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
+            @csrf
+          </form>
+        @else
+          <a href="{{url('login')}}" class="sidebar-link text-[15px] font-medium block px-5 py-3 rounded-md">
+            <i class="fa-solid fa-right-to-bracket mr-1"></i> Login
+          </a>
+        @endauth
+      </li>
     </ul>
   </aside>
 

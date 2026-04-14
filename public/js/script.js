@@ -172,7 +172,7 @@ window.addEventListener("scroll", () => {
 
 
 
-// mobile drop down js 
+// mobile drop down js
 
 function toggleNested(menuId, iconId) {
   const menu = document.getElementById(menuId);
@@ -196,7 +196,7 @@ function toggleNested(menuId, iconId) {
   }
 }
 
-// hero slider js 
+// hero slider js
 
 
 var swiper = new Swiper(".heroSwiper", {
@@ -219,7 +219,7 @@ var swiper = new Swiper(".heroSwiper", {
   },
 });
 
-// product detail  all js 
+// product detail  all js
 
 document.addEventListener('DOMContentLoaded', function () {
   console.log("Caftaneninde Logic Started");
@@ -355,7 +355,7 @@ function copyToClipboard() {
 }
 
 
-// rab section js 
+// rab section js
 
 
 function openTab(evt, tabName) {
@@ -389,7 +389,7 @@ function toggleModal(show) {
   }
 }
 
-// add to cart js 
+// add to cart js
 document.addEventListener('DOMContentLoaded', function () {
     // --- 1. ADD TO CART LOGIC ---
     const addBtn = document.getElementById('addToCartBtn');
@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function () {
             item.style.transition = "0.4s ease";
             item.style.opacity = "0";
             item.style.transform = "translateX(20px)";
-            
+
             setTimeout(() => {
                 item.remove();
                 removeFromStorage(productId);
@@ -489,7 +489,7 @@ function removeFromStorage(id) {
     let cart = JSON.parse(localStorage.getItem('userCart')) || [];
     cart = cart.filter(item => item.id !== id);
     localStorage.setItem('userCart', JSON.stringify(cart));
-    
+
     // Refresh page if cart is empty to show empty state
     if (cart.length === 0) location.reload();
 }
@@ -510,9 +510,9 @@ function showToast(msg) {
         toast.style.opacity = "0";
         setTimeout(() => toast.remove(), 500);
     }, 3000);
-} 
+}
 
-// search icon js 
+// search icon js
 
 document.addEventListener('DOMContentLoaded', function () {
   const searchTrigger = document.getElementById('searchTrigger');
@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// wishlist js 
+// wishlist js
 
 document.addEventListener('DOMContentLoaded', function() {
     const removeButtons = document.querySelectorAll('.remove-item');
@@ -553,7 +553,7 @@ document.addEventListener('DOMContentLoaded', function() {
     removeButtons.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
-            
+
             // Sabse pas wala card dhundo
             const card = this.closest('.wishlist-card');
 
@@ -572,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ACCOUNT PAGE JS 
+// ACCOUNT PAGE JS
 
 // ===== TAB SWITCHING =====
 function switchTab(t) {
@@ -583,8 +583,15 @@ function switchTab(t) {
   document.querySelectorAll('.mobile-tab-item').forEach(i => i.classList.remove('active'));
   document.querySelectorAll(`.mobile-tab-item[data-tab="${t}"]`).forEach(i => i.classList.add('active'));
 }
-document.querySelectorAll('.sidebar-link').forEach(l => l.addEventListener('click', e => { e.preventDefault(); switchTab(l.dataset.tab); }));
-document.querySelectorAll('.mobile-tab-item').forEach(i => i.addEventListener('click', e => { e.preventDefault(); switchTab(i.dataset.tab); window.scrollTo({top:0,behavior:'smooth'}); }));
+document.querySelectorAll('.sidebar-link[data-tab]').forEach(l => l.addEventListener('click', e => {
+  e.preventDefault();
+  switchTab(l.dataset.tab);
+}));
+document.querySelectorAll('.mobile-tab-item[data-tab]').forEach(i => i.addEventListener('click', e => {
+  e.preventDefault();
+  switchTab(i.dataset.tab);
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
 
 // ===== ORDER FILTER =====
 document.querySelectorAll('[data-order-tab]').forEach(btn => {
@@ -821,6 +828,10 @@ function confirmCancel(btn) {
 }
 
 
-// NAVIGATION BAR MOBILE 
+
+
+
+
+// NAVIGATION BAR MOBILE
 
 

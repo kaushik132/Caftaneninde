@@ -27,11 +27,11 @@
   </p>
 
   <div class="lg:mt-10 mt-7 flex flex-wrap justify-center gap-3">
-    <a href="my-orders.php" class="border border-[#FF71A8] px-10 lg:py-2.5 py-2 text-[#FF71A8] text-[13px] lg:text-[15px] font-bold inline-block rounded-md hover:bg-[#FFE1ED] transition-all">
+    <a href="{{url('my-orders')}}" class="border border-[#FF71A8] px-10 lg:py-2.5 py-2 text-[#FF71A8] text-[13px] lg:text-[15px] font-bold inline-block rounded-md hover:bg-[#FFE1ED] transition-all">
       View Order
     </a>
 
-    <a href="index.php" class="bg-[#FF71A8] px-10 lg:py-2.5 py-2 text-white text-[13px] lg:text-[15px] font-bold inline-block rounded-md hover:bg-black transition-all shadow-md">
+    <a href="{{url('/')}}" class="bg-[#FF71A8] px-10 lg:py-2.5 py-2 text-white text-[13px] lg:text-[15px] font-bold inline-block rounded-md hover:bg-black transition-all shadow-md">
       Continue Shopping
     </a>
   </div>
