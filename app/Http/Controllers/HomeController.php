@@ -13,12 +13,20 @@ use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Review;
+use App\Models\ShippingAddress;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Seo;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $homepage = Seo::select('seo_title_home', 'seo_des_home', 'seo_key_home')->first();
+        $seo_data['seo_title'] = $homepage->seo_title_home;
+        $seo_data['seo_description'] = $homepage->seo_des_home;
+        $seo_data['keywords'] = $homepage->seo_key_home;
+        $canocial = 'https://caftaneninde.com/';
         $homecategories = Category::where('is_active', true)
             ->with(['products' => fn($q) => $q->where('status', 'active')->with('primaryImage')->limit(8)])
             ->get();
@@ -56,12 +64,20 @@ class HomeController extends Controller
             'swiperProducts',
             'homeReviews',
             'avgHomeRating',
-            'totalHomeReviews'
+            'totalHomeReviews',
+            'seo_data',
+            'canocial',
         ));
     }
 
     public function products(Request $request)
     {
+
+        $homepage = Seo::select('seo_title_product', 'seo_des_product', 'seo_key_product')->first();
+        $seo_data['seo_description'] = $homepage->seo_des_product;
+        $seo_data['keywords'] = $homepage->seo_key_product;
+        $seo_data['seo_title'] = $homepage->seo_title_product;
+        $canocial = 'https://caftaneninde.com/products';
         // Categories — sidebar filter ke liye
         $categories = Category::where('is_active', true)->get();
 
@@ -120,7 +136,7 @@ class HomeController extends Controller
         // ── Paginate ──────────────────────────────────────────────────────────────
         $products = $query->paginate(12)->withQueryString();
 
-        return view('products', compact('products', 'categories', 'colors'));
+        return view('products', compact('products', 'categories', 'colors', 'seo_data', 'canocial'));
     }
     public function productDetails($slug = null)
     {
@@ -133,6 +149,11 @@ class HomeController extends Controller
             ->where('slug', $slug)
             ->where('status', 'active')
             ->firstOrFail();
+
+        $seo_data['seo_title'] = $product->seo_title_home;
+        $seo_data['seo_description'] = $product->seo_des_home;
+        $seo_data['keywords'] = $product->seo_key_home;
+        $canocial = 'https://caftaneninde.com/product/' . $product->slug;
 
         $primaryImage    = $product->images->firstWhere('is_primary', true) ?? $product->images->first();
 
@@ -178,11 +199,14 @@ class HomeController extends Controller
             'reviewsCount',
             'currentPrice',
             'relatedProducts',
+            'seo_data',
+            'canocial',
         ));
     }
 
     public function blogs($slug = null)
     {
+        $homepage = Seo::select('seo_title_blog', 'seo_des_blog', 'seo_key_blog')->first();
         if ($slug) {
             $category = BlogCategory::where('slug', $slug)->firstOrFail();
             $blogs = Blog::with('category')
@@ -190,34 +214,56 @@ class HomeController extends Controller
                 ->where('is_published', true)
                 ->latest()
                 ->paginate(6);
+
+            $seo_data['seo_description'] = $category->seo_description;
+            $seo_data['keywords'] = $category->seo_keyword;
+            $seo_data['seo_title'] = $category->seo_title;
+
+            $canocial = 'https://www.caftaneninde.com/blogs/' . $slug;
         } else {
             $blogs = Blog::with('category')
                 ->where('is_published', true)
                 ->latest()
                 ->paginate(6);
+            $seo_data['seo_title'] = $homepage->seo_title_blog;
+            $seo_data['seo_description'] = $homepage->seo_des_blog;
+            $seo_data['keywords'] = $homepage->seo_key_blog;
+            $canocial = 'https://www.caftaneninde.com/blogs';
         }
-        return view('blogs', compact('blogs'));
+        return view('blogs', compact('blogs', 'seo_data', 'canocial'));
     }
 
     public function blogDetails($slug = null)
     {
         $blog = Blog::latest()->limit(3)->get();
         $blogData = Blog::with('category')->where('slug', $slug)->first();
-        //          $seo_data['seo_title'] =$blogData->seo_title;
-        //     $seo_data['seo_description'] =$blogData->seo_description;
-        //    $seo_data['keywords'] =$blogData->seo_keyword;
-        //    $canocial ='https://codepin.org/blog-details/'.$slug;
-        return view('blog-details', compact('blogData', 'blog'));
+                 $seo_data['seo_title'] =$blogData->seo_title;
+            $seo_data['seo_description'] =$blogData->seo_description;
+           $seo_data['keywords'] =$blogData->seo_keyword;
+           $canocial ='https://codepin.org/blog-details/'.$slug;
+        return view('blog-details', compact('blogData', 'blog', 'seo_data', 'canocial'));
     }
 
     public function contactUs()
     {
-        return view('contact-us');
+         $homepage = Seo::select('seo_title_contact', 'seo_des_contact', 'seo_key_contact')->first();
+        $seo_data['seo_title'] = $homepage->seo_title_contact;
+        $seo_data['seo_description'] = $homepage->seo_des_contact;
+        $seo_data['keywords'] = $homepage->seo_key_contact;
+
+        $canocial = 'https://www.caftaneninde.com/contact-us';
+        return view('contact-us', compact('seo_data', 'canocial'));
     }
 
     public function wishlist()
     {
-        // Login check — guest hai to login page par bhejo
+             $homepage = Seo::select('seo_title_wishlist', 'seo_des_wishlist', 'seo_key_wishlist')->first();
+        $seo_data['seo_title'] = $homepage->seo_title_wishlist;
+        $seo_data['seo_description'] = $homepage->seo_des_wishlist;
+        $seo_data['keywords'] = $homepage->seo_key_wishlist;
+
+        $canocial = 'https://www.caftaneninde.com/wishlist';
+
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'Please login to view your wishlist.');
         }
@@ -231,17 +277,20 @@ class HomeController extends Controller
 
         $itemCount = $wishlistItems->count();
 
-        return view('wishlist', compact('wishlistItems', 'itemCount'));
-    }
-    public function account()
-    {
-        return view('account');
+        return view('wishlist', compact('wishlistItems', 'itemCount', 'seo_data', 'canocial'));
     }
 
 
 
     public function cart()
     {
+
+    $homepage = Seo::select('seo_title_cart', 'seo_des_cart', 'seo_key_cart')->first();
+        $seo_data['seo_title'] = $homepage->seo_title_cart;
+        $seo_data['seo_description'] = $homepage->seo_des_cart;
+        $seo_data['keywords'] = $homepage->seo_key_cart;
+
+        $canocial = 'https://www.caftaneninde.com/cart';
         $cartItems = CartItem::with([
             'product.primaryImage',
             'variant',
@@ -266,12 +315,20 @@ class HomeController extends Controller
             'tax',
             'shipping',
             'total',
-            'itemCount'
+            'itemCount',
+            'seo_data',
+            'canocial',
         ));
     }
 
     public function checkout()
     {
+        $homepage = Seo::select('seo_title_checkout', 'seo_des_checkout', 'seo_key_checkout')->first();
+        $seo_data['seo_title'] = $homepage->seo_title_checkout;
+        $seo_data['seo_description'] = $homepage->seo_des_checkout;
+        $seo_data['keywords'] = $homepage->seo_key_checkout;
+
+        $canocial = 'https://www.caftaneninde.com/checkout';
         // Cart empty ho to cart page par bhejo
         $cartItems = \App\Models\CartItem::with([
             'product.primaryImage',
@@ -303,24 +360,26 @@ class HomeController extends Controller
             'shipping',
             'total',
             'user',
+            'seo_data',
+            'canocial',
         ));
     }
 
-    public function myOrders()
-    {
-        return view('my-orders');
-    }
+    // public function myOrders()
+    // {
+    //     return view('my-orders');
+    // }
 
 
-    public function orderConfirmed()
-    {
-        return view('order-confirmed');
-    }
+    // public function orderConfirmed()
+    // {
+    //     return view('order-confirmed');
+    // }
 
-    public function orderTrack()
-    {
-        return view('order-track');
-    }
+    // public function orderTrack()
+    // {
+    //     return view('order-track');
+    // }
 
 
     public function storeReview(Request $request, $id)
@@ -348,5 +407,108 @@ class HomeController extends Controller
         ]);
 
         return back()->with('success', 'Review submitted successfully.');
+    }
+
+
+    // ── Account Page ──────────────────────────────────────────────────────────────
+    public function account()
+    {
+        $homepage = Seo::select('seo_title_account', 'seo_des_account', 'seo_key_account')->first();
+        $seo_data['seo_title'] = $homepage->seo_title_account;
+        $seo_data['seo_description'] = $homepage->seo_des_account;
+        $seo_data['keywords'] = $homepage->seo_key_account;
+
+        $canocial = 'https://www.caftaneninde.com/account';
+        $user = auth()->user();
+
+        // Orders with items
+        $orders = Order::with(['items.product.primaryImage', 'items.variant'])
+            ->where('user_id', $user->id)
+            ->latest()
+            ->get();
+
+        $allCount      = $orders->count();
+        $activeCount   = $orders->whereIn('status', ['pending', 'confirmed', 'shipped'])->count();
+        $completeCount = $orders->whereIn('status', ['delivered'])->count();
+
+        // Wishlist
+        $wishlistItems = Wishlist::with(['product.primaryImage', 'product.variants'])
+            ->where('user_id', $user->id)
+            ->latest()
+            ->get();
+
+        // Shipping addresses
+        $addresses = ShippingAddress::where('user_id', $user->id)
+            ->latest()
+            ->get();
+
+        return view('account', compact(
+            'user',
+            'orders',
+            'allCount',
+            'activeCount',
+            'completeCount',
+            'wishlistItems',
+            'addresses',
+            'seo_data',
+            'canocial',
+        ));
+    }
+
+    // ── Update Profile (AJAX POST /account/profile) ───────────────────────────
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name'  => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . auth()->id(),
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        auth()->user()->update(
+            $request->only(['name', 'email', 'phone'])
+        );
+
+        return response()->json(['success' => true, 'message' => 'Profile updated successfully!']);
+    }
+    // ── Update Password (AJAX POST /account/password) ─────────────────────────
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password'          => 'required',
+            'new_password'              => 'required|min:8',
+            'new_password_confirmation' => 'required|same:new_password',
+        ]);
+
+        if (!Hash::check($request->current_password, auth()->user()->password)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Current password is incorrect.',
+            ], 422);
+        }
+
+        auth()->user()->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Password updated successfully!']);
+    }
+
+    // ── Cancel Order (AJAX POST /account/orders/{id}/cancel) ─────────────────
+    public function cancelOrder($id)
+    {
+        $order = Order::where('user_id', auth()->id())
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->find($id);
+
+        if (!$order) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Order cannot be cancelled.',
+            ], 422);
+        }
+
+        $order->update(['status' => 'cancelled']);
+
+        return response()->json(['success' => true, 'message' => 'Order cancelled successfully.']);
     }
 }

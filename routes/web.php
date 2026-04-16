@@ -42,9 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
     Route::get('/account', [HomeController::class, 'account'])->name('account');
     Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
-    Route::get('/my-orders', [HomeController::class, 'myOrders'])->name('my-orders');
+    // Route::get('/my-orders', [HomeController::class, 'myOrders'])->name('my-orders');
     Route::get('/order-confirmed', [HomeController::class, 'orderConfirmed'])->name('order-confirmed');
-    Route::get('/order-track', [HomeController::class, 'orderTrack'])->name('order-track');
+    // Route::get('/order-track', [HomeController::class, 'orderTrack'])->name('order-track');
 
     // Cart AJAX
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
@@ -57,5 +57,12 @@ Route::middleware('auth')->group(function () {
     // Checkout POST — Order place karo
     Route::post('/checkout', [OrderController::class, 'placeOrder'])->name('checkout.post');
 
+
+    // Product Review AJAX
     Route::post('/product/{id}/review', [HomeController::class, 'storeReview'])->name('product.review.store');
+
+    // ── Account AJAX Routes ───────────────────────────────────────────────────
+    Route::post('/account/profile',  [HomeController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/account/password', [HomeController::class, 'updatePassword'])->name('password.update');
+    Route::post('/account/orders/{id}/cancel', [HomeController::class, 'cancelOrder'])->name('orders.cancel');
 });

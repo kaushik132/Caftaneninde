@@ -83,7 +83,7 @@ class OrderController extends Controller
                 'city'          => $request->city,
                 'state'         => $request->state,
                 'zip'           => $request->zip,
-                'country'       => 'Pakistan',
+                'country'       => $request->country,
                 'phone'         => $request->phone,
             ]);
 

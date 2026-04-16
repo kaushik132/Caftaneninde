@@ -77,9 +77,9 @@
                     </div>
 
                     <div class="mt-5">
-                        <label class="lg:text-[15px] text-[13px] font-medium">Apartment, Suite, etc</label>
-                        <input type="text" name="address_line2"
-                               value="{{ old('address_line2') }}"
+                        <label class="lg:text-[15px] text-[13px] font-medium">Country</label>
+                        <input type="text" name="country"
+                               value="{{ old('country') }}"
                                class="bg-white px-5 mt-1 py-2.5 text-[14px] rounded-md w-full border border-transparent focus:border-[#FF71A8] outline-none transition">
                     </div>
 

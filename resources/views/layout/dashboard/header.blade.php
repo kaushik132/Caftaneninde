@@ -4,7 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaftaneninde</title>
+         @if (isset($seo_data['seo_title']))
+        <meta property="og:title" content="{{ $seo_data['seo_title'] }}">
+    @endif
+    <meta property="og:site_name" content="http://127.0.0.1:8000/">
+
+    <meta property="og:url" content="http://127.0.0.1:8000/">
+
+    @if (isset($seo_data['seo_description']))
+        <meta property="og:description" content="{{ $seo_data['seo_description'] }}">
+    @endif
+
+
+    @if (isset($seo_data['seo_title']))
+        <title>{{ $seo_data['seo_title'] }}</title>
+    @endif
+
+    @if (isset($seo_data['seo_description']))
+        <meta name="description" content="{{ $seo_data['seo_description'] }}" />
+    @endif
+
+    @if (isset($seo_data['keywords']))
+        <meta name="keywords" content="{{ $seo_data['keywords'] }}" />
+    @endif
+
+
+    @if (isset($canocial))
+        <link rel="canonical" href="{{ $canocial }}" />
+    @endif
+
     <link rel="icon" type="image/x-icon" href="{{ url('images/favicon.png') }}">
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>

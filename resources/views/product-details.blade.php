@@ -445,9 +445,9 @@
         <div id="relatedSwiper" class="swiper relative lg:!pl-10 lg:!pr-0 !px-4 !pb-5 mt-4">
             <div class="swiper-wrapper">
                 {{-- Related products same category se --}}
-                @foreach ($relatedProducts ?? [] as $related)
-                    @php $relThumb = $related->primaryImage; @endphp
-                    <div class="swiper-slide">
+                <div class="swiper-slide">
+                        @foreach ($relatedProducts ?? [] as $related)
+                            @php $relThumb = $related->primaryImage; @endphp
                         <div class="bg-white lg:rounded-xl rounded-md shadow">
                             <div class="relative">
                                 <img src="{{ $relThumb ? url('uploads/' . $relThumb->image_path) : 'https://via.placeholder.com/400x350' }}"
@@ -474,8 +474,8 @@
                                     ${{ number_format($related->sale_price ?? $related->price, 2) }}</h3>
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                @endforeach
             </div>
             <button id="productPrev"
                 class="absolute hidden lg:block z-[99] cursor-pointer text-[#FF71A8] left-0 top-1/2 -translate-y-1/2 bg-[#F6F6F6] px-3 py-6 rounded-r-md shadow-lg transition">
