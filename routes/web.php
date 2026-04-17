@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ Route::get('/product-details/{slug?}', [HomeController::class, 'productDetails']
 Route::get('/blogs/{slug?}', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blog-details/{slug?}', [HomeController::class, 'blogDetails'])->name('blog-details');
 Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('contact-us');
+Route::post('/contact-us', [HomeController::class, 'sendMessage'])->name('contact.send');
+
+Route::get('sitemap.xml',[SitemapController::class, 'index']);
 
 // ── Auth Routes ───────────────────────────────────────────────────────────────
 

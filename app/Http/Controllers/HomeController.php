@@ -17,6 +17,7 @@ use App\Models\ShippingAddress;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Seo;
+use App\Models\ContactMessage;
 
 class HomeController extends Controller
 {
@@ -252,8 +253,52 @@ class HomeController extends Controller
         $seo_data['keywords'] = $homepage->seo_key_contact;
 
         $canocial = 'https://www.caftaneninde.com/contact-us';
+        // $user = auth()->user();
         return view('contact-us', compact('seo_data', 'canocial'));
     }
+
+
+    public function sendMessage(Request $request)
+{
+    $request->validate([
+        'first_name' => 'required|string|max:100',
+        'last_name'  => 'required|string|max:100',
+        'email'      => 'required|email|max:255',
+        'phone'      => 'nullable|string|max:20',
+        'subject'    => 'required|string|max:255',
+        'message'    => 'required|string|min:10|max:2000',
+    ], [
+        'first_name.required' => 'First name is required.',
+        'last_name.required'  => 'Last name is required.',
+        'email.required'      => 'Email address is required.',
+        'email.email'         => 'Please enter a valid email.',
+        'subject.required'    => 'Subject is required.',
+        'message.required'    => 'Message is required.',
+        'message.min'         => 'Message must be at least 10 characters.',
+    ]);
+
+    ContactMessage::create([
+        'first_name' => $request->first_name,
+        'last_name'  => $request->last_name,
+        'email'      => $request->email,
+        'phone'      => $request->phone,
+        'subject'    => $request->subject,
+        'message'    => $request->message,
+        'status'     => 'unread',
+    ]);
+
+    // AJAX request hai
+    if ($request->expectsJson()) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Your message has been sent! We\'ll get back to you within 24 hours.',
+        ]);
+    }
+
+    return back()->with('success', 'Your message has been sent! We\'ll get back to you within 24 hours.');
+}
+
+
 
     public function wishlist()
     {

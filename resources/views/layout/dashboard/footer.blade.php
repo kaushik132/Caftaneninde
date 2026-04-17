@@ -146,7 +146,16 @@
 <script src="js/script.js"></script>
 
 </script>
+<script>
+function changeLanguage(lang) {
+  var select = document.querySelector(".goog-te-combo");
 
+  if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event("change"));
+  }
+}
+</script>
 
 </body>
 

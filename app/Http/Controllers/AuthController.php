@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,13 @@ class AuthController extends Controller
     // ── Login Form ────────────────────────────────────────────────────────────
     public function loginForm()
     {
-        return view('auth.login');
+        $homepage = Seo::select('seo_title_login', 'seo_des_login', 'seo_key_login')->first();
+        $seo_data['seo_title'] = $homepage->seo_title_login;
+        $seo_data['seo_description'] = $homepage->seo_des_login;
+        $seo_data['keywords'] = $homepage->seo_key_login;
+
+        $canocial = 'https://www.caftaneninde.com/login';
+        return view('auth.login',compact('seo_data','canocial'));
     }
 
     // ── Login Submit ──────────────────────────────────────────────────────────
@@ -43,7 +50,13 @@ class AuthController extends Controller
     // ── Register Form ─────────────────────────────────────────────────────────
     public function registerForm()
     {
-        return view('auth.register');
+        $homepage = Seo::select('seo_title_register', 'seo_des_register', 'seo_key_register')->first();
+        $seo_data['seo_title'] = $homepage->seo_title_register;
+        $seo_data['seo_description'] = $homepage->seo_des_register;
+        $seo_data['keywords'] = $homepage->seo_key_register;
+
+        $canocial = 'https://www.caftaneninde.com/register';
+        return view('auth.register',compact('seo_data','canocial'));
     }
 
     // ── Register Submit ───────────────────────────────────────────────────────
@@ -67,7 +80,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-      
+
 
         return redirect()->route('home')->with('success', 'Account created successfully!');
     }

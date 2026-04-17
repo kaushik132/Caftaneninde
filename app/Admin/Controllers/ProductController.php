@@ -111,6 +111,15 @@ class ProductController extends AdminController
             });
         });
 
+         $form->tab('Seo', function ($form) {
+
+
+
+                $form->text('seo_title_home', __('Meta Title'));
+                $form->textarea('seo_des_home', __('Meta Description'));
+                $form->textarea('seo_key_home', __('Meta Keywords'));
+        });
+
 
         return $form;
     }

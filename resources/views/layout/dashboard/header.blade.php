@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         @if (isset($seo_data['seo_title']))
+    @if (isset($seo_data['seo_title']))
         <meta property="og:title" content="{{ $seo_data['seo_title'] }}">
     @endif
     <meta property="og:site_name" content="http://127.0.0.1:8000/">
@@ -40,6 +40,17 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 
 <body>
@@ -50,11 +61,31 @@
             </p>
 
             <ul class="flex gap-5  items-center text-white text-[14px] font-medium">
-                <li><i class="fa-solid fa-location-dot mr-1"></i> Order Tracking</li>
-                <li><i class="fa-solid fa-truck-fast mr-1"></i> Shipping Charges</li>
-                <li class="bg-white text-[#FF71A8] px-3 py-[5px] rounded-md cursor-pointer">EN</li>
+                {{-- <li><i class="fa-solid fa-location-dot mr-1"></i> Order Tracking</li> --}}
+                {{-- <li><i class="fa-solid fa-truck-fast mr-1"></i> Shipping Charges</li> --}}
+                <li onclick="changeLanguage('en')"
+                    class="bg-white text-[#FF71A8] px-3 py-[5px] rounded-md cursor-pointer">
+                    EN
+                </li>
+
+                <li onclick="changeLanguage('hi')"
+                    class="bg-white text-[#FF71A8] px-3 py-[5px] rounded-md cursor-pointer">
+                    HI
+                </li>
+
+                <li onclick="changeLanguage('fr')"
+                    class="bg-white text-[#FF71A8] px-3 py-[5px] rounded-md cursor-pointer">
+                    FR
+                </li>
+
+                <li onclick="changeLanguage('es')"
+                    class="bg-white text-[#FF71A8] px-3 py-[5px] rounded-md cursor-pointer">
+                    ES
+                </li>
+
             </ul>
         </div>
+        <div id="google_translate_element" style="display:none;"></div>
 
         <div id="mainHeader" class="flex justify-between items-center py-3 px-4 sm:px-10 bg-white">
             <a href="{{ url('/') }}">
