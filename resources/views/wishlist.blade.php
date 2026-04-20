@@ -93,9 +93,9 @@
 
                             {{-- Price --}}
                             <div class="flex items-center gap-2 mt-1.5">
-                                <h3 class="text-[#FF71A8] lg:text-[16px] text-[12px] font-bold">${{ number_format($price, 2) }}</h3>
+                                <h3 class="text-[#FF71A8] lg:text-[16px] text-[12px] font-bold" data-usd="{{ number_format($price, 2) }}">${{ number_format($price, 2) }}</h3>
                                 @if($product->sale_price)
-                                    <h3 class="text-gray-400 lg:text-[13px] text-[11px] line-through">${{ number_format($product->price, 2) }}</h3>
+                                    <h3 class="text-gray-400 lg:text-[13px] text-[11px] line-through" data-usd="{{ number_format($product->price, 2) }}">${{ number_format($product->price, 2) }}</h3>
                                 @endif
                             </div>
 

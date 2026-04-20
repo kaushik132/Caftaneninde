@@ -112,7 +112,7 @@
                                 <p class="lg:text-[13px] text-[11px] font-medium mt-1 text-[#7D7D7D]">Placed on {{ $order->created_at->format('F d, Y') }}</p>
                             </div>
                             <div class="text-right">
-                                <h3 class="lg:text-[20px] text-[15px] text-[#FF71A8] font-medium">${{ number_format($order->total_amount, 2) }}</h3>
+                                <h3 class="lg:text-[20px] text-[15px] text-[#FF71A8] font-medium" data-usd="{{ $order->total_amount }}">${{ number_format($order->total_amount, 2) }}</h3>
                                 <p class="text-[11px] text-[#7D7D7D] font-medium">{{ $order->items->sum('quantity') }} {{ Str::plural('Item', $order->items->sum('quantity')) }}</p>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                                         <p class="text-[#898888] text-[12px]">QTY: {{ $firstItem->quantity }}</p>
                                     </div>
                                 </div>
-                                <span class="text-[#FF71A8] font-medium text-[14px] flex-shrink-0 ml-2">${{ number_format($firstItem->unit_price * $firstItem->quantity, 2) }}</span>
+                                <span class="text-[#FF71A8] font-medium text-[14px] flex-shrink-0 ml-2" data-usd="{{ number_format($firstItem->unit_price * $firstItem->quantity, 2) }}">${{ number_format($firstItem->unit_price * $firstItem->quantity, 2) }}</span>
                             </div>
                         @endif
 
@@ -198,7 +198,7 @@
                                     </button>
                                 </div>
                                 <p class="text-[#9D9D9D] text-[12px] mt-0.5">{{ $wp->category->name ?? '' }}</p>
-                                <p class="text-[#FF71A8] font-semibold text-[15px] mt-1">${{ number_format($wp->sale_price ?? $wp->price, 2) }}</p>
+                                <p class="text-[#FF71A8] font-semibold text-[15px] mt-1" data-usd="{{ number_format($wp->sale_price ?? $wp->price, 2) }}">${{ number_format($wp->sale_price ?? $wp->price, 2) }}</p>
                                 <a href="{{ route('product-details', $wp->slug) }}" class="mt-2 text-[12px] bg-[#FF71A8] text-white px-5 py-1.5 rounded-sm font-medium w-full block text-center hover:bg-black transition">
                                     View Product
                                 </a>

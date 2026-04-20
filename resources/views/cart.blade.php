@@ -64,7 +64,7 @@
                                     @endif
 
                                     @if ($product->sale_price)
-                                        <p class="text-gray-400 text-[11px] mt-1 line-through">
+                                        <p class="text-gray-400 text-[11px] mt-1 line-through" data-usd="{{ number_format($product->price, 2) }}">
                                             ${{ number_format($product->price, 2) }}</p>
                                     @endif
                                 </div>
@@ -92,10 +92,10 @@
                                     {{-- Item Total --}}
                                     <div
                                         class="text-left lg:text-right border-t border-gray-50 pt-2 lg:border-none lg:pt-0">
-                                        <h3 class="item-total text-[#FF71A8] lg:text-[22px] text-[18px] font-bold">
+                                        <h3 class="item-total text-[#FF71A8] lg:text-[22px] text-[18px] font-bold" data-usd="{{ number_format($price * $item->quantity, 2) }}">
                                             ${{ number_format($price * $item->quantity, 2) }}
                                         </h3>
-                                        <p class="lg:text-[13px] text-[11px] text-[#898888] font-medium">
+                                        <p class="lg:text-[13px] text-[11px] text-[#898888] font-medium" data-usd="{{ number_format($price, 2) }}">
                                             ${{ number_format($price, 2) }} each
                                         </p>
                                     </div>
@@ -139,7 +139,7 @@
                 <div class="mt-4 space-y-1 lg:text-[16px] text-[13px] border-[#B0B0B0] border-b pb-5">
                     <div class="flex justify-between">
                         <p class="text-[#737373]">Subtotal:</p>
-                        <p id="summarySubtotal">${{ number_format($subtotal, 2) }}</p>
+                        <p id="summarySubtotal" data-usd="{{ $subtotal }}">${{ number_format($subtotal, 2) }}</p>
                     </div>
                     <div class="flex justify-between">
                         <p class="text-[#737373]">Shipping:</p>
@@ -147,13 +147,13 @@
                     </div>
                     <div class="flex justify-between">
                         <p class="text-[#737373]">Tax (8%)</p>
-                        <p id="summaryTax">${{ number_format($tax, 2) }}</p>
+                        <p id="summaryTax" data-usd="{{ $tax }}">${{ number_format($tax, 2) }}</p>
                     </div>
                 </div>
 
                 <div class="flex justify-between lg:text-[18px] text-[14px] mt-3 font-semibold">
                     <p>Total:</p>
-                    <p id="summaryTotal">${{ number_format($total, 2) }}</p>
+                    <p id="summaryTotal" data-usd="{{ $total }}">${{ number_format($total, 2) }}</p>
                 </div>
 
                 <div class="mt-4">
@@ -348,4 +348,5 @@
             }, 2500);
         }
     </script>
+
 @endsection

@@ -82,12 +82,12 @@
                 {{-- Price + Stock --}}
                 <div class="lg:mt-4 mt-3 flex gap-4 items-end">
                     @if ($product->sale_price)
-                        <h2 class="lg:text-[24px] text-[18px] font-medium text-[#FF71A8]">
+                        <h2 class="lg:text-[24px] text-[18px] font-medium text-[#FF71A8]" data-usd="{{ $product->sale_price }}">
                             ${{ number_format($product->sale_price, 2) }}</h2>
-                        <h2 class="lg:text-[18px] text-[14px] font-medium line-through text-gray-400">
+                        <h2 class="lg:text-[18px] text-[14px] font-medium line-through text-gray-400" data-usd="{{ $product->price }}">
                             ${{ number_format($product->price, 2) }}</h2>
                     @else
-                        <h2 class="lg:text-[24px] text-[18px] font-medium">${{ number_format($product->price, 2) }}</h2>
+                        <h2 class="lg:text-[24px] text-[18px] font-medium" data-usd="{{ $product->price }}">${{ number_format($product->price, 2) }}</h2>
                     @endif
                     <span id="stockBadge"
                         class="text-[#08B302] bg-[#D2FFD1] font-medium lg:text-[13px] text-[10px] rounded-md px-4 py-1.5">In
@@ -470,7 +470,7 @@
                             </div>
                             <div class="lg:p-4 p-3">
                                 <h3 class="lg:text-[15px] text-[12px] font-medium truncate">{{ $related->name }}</h3>
-                                <h3 class="text-[#FF71A8] lg:text-[16px] text-[12px] font-medium mt-1.5">
+                                <h3 class="text-[#FF71A8] lg:text-[16px] text-[12px] font-medium mt-1.5" data-usd="{{ $related->sale_price ?? $related->price }}">
                                     ${{ number_format($related->sale_price ?? $related->price, 2) }}</h3>
                             </div>
                         </div>

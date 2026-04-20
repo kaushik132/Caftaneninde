@@ -416,10 +416,10 @@ class HomeController extends Controller
     // }
 
 
-    // public function orderConfirmed()
-    // {
-    //     return view('order-confirmed');
-    // }
+    public function orderConfirmed()
+    {
+        return view('order-confirmed');
+    }
 
     // public function orderTrack()
     // {

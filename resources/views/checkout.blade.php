@@ -217,11 +217,11 @@
                                         {{ $variant->color }} / {{ $variant->size }}
                                     </p>
                                 @endif
-                                <p class="text-[#FF71A8] text-[14px] font-semibold mt-1">
+                                <p class="text-[#FF71A8] text-[14px] font-semibold mt-1" data-usd="{{ $price * $item->quantity }}">
                                     ${{ number_format($price * $item->quantity, 2) }}
                                 </p>
                                 @if($item->quantity > 1)
-                                    <p class="text-gray-400 text-[11px]">${{ number_format($price, 2) }} each</p>
+                                    <p class="text-gray-400 text-[11px]" data-usd="{{ number_format($price, 2) }}">${{ number_format($price, 2) }} each</p>
                                 @endif
                             </div>
                         </div>
@@ -232,21 +232,21 @@
                 <div class="mt-4 space-y-1 lg:text-[15px] text-[13px] border-[#B0B0B0] border-b pb-5">
                     <div class="flex justify-between">
                         <p class="text-[#737373]">Subtotal:</p>
-                        <p>${{ number_format($subtotal, 2) }}</p>
+                        <p data-usd="{{ number_format($subtotal, 2) }}">${{ number_format($subtotal, 2) }}</p>
                     </div>
                     <div class="flex justify-between">
                         <p class="text-[#737373]">Shipping:</p>
-                        <p class="text-[#389528]">{{ $shipping == 0 ? 'Free' : '$' . number_format($shipping, 2) }}</p>
+                        <p class="text-[#389528]" data-usd="{{ $shipping == 0 ? 'Free' : '$' . number_format($shipping, 2) }}">{{ $shipping == 0 ? 'Free' : '$' . number_format($shipping, 2) }}</p>
                     </div>
                     <div class="flex justify-between">
                         <p class="text-[#737373]">Tax (8%)</p>
-                        <p>${{ number_format($tax, 2) }}</p>
+                        <p data-usd="{{ number_format($tax, 2) }}">${{ number_format($tax, 2) }}</p>
                     </div>
                 </div>
 
                 <div class="flex justify-between lg:text-[18px] text-[15px] mt-3 font-semibold">
                     <p>Total:</p>
-                    <p class="text-[#FF71A8]">${{ number_format($total, 2) }}</p>
+                    <p class="text-[#FF71A8]" data-usd="{{ number_format($total, 2) }}">${{ number_format($total, 2) }}</p>
                 </div>
 
                 <div class="mt-4">

@@ -197,7 +197,7 @@
                                             <h3
                                                 class="lg:text-[16px] text-[13px] font-semibold text-gray-800 group-hover:text-[#FF71A8] transition-colors uppercase">
                                                 {{ $allproducts->name }}</h3>
-                                            <p class="text-[#FF71A8] lg:text-[15px] text-[13px] font-bold mt-1">
+                                            <p class="text-[#FF71A8] lg:text-[15px] text-[13px] font-bold mt-1" data-usd="{{ number_format($allproducts->sale_price, 2) }}">
                                                 ${{ number_format($allproducts->sale_price, 2) }}</p>
                                         </div>
 
@@ -270,7 +270,7 @@
                                         <h3
                                             class="lg:text-[16px] text-[13px] font-semibold text-gray-800 group-hover:text-[#FF71A8] transition-colors uppercase">
                                             {{ $swiperProduct->name }}</h3>
-                                        <p class="text-[#FF71A8] lg:text-[15px] text-[13px] font-bold mt-1">
+                                        <p class="text-[#FF71A8] lg:text-[15px] text-[13px] font-bold mt-1" data-usd="{{ number_format($swiperProduct->sale_price, 2) }}">
                                             ${{ number_format($swiperProduct->sale_price, 2) }}</p>
                                     </div>
 
@@ -303,40 +303,40 @@
     </section>
 
     <!-- <section class="bg-[#FFDEEB] lg:py-12 py-8 px-4  lg:px-12">
-                                                  <div class="text-center ">
-                                                    <h2 class="lg:text-[32px] text-[20px] font-semibold">Experience Élégance</h2>
-                                                    <p class="font-medium lg:text-[16px] text-[13px] lg:-mt-1 ">Discover the artistry behind our collections and the stories of the women who wear
-                                                      them</p>
-                                                  </div>
+                                                      <div class="text-center ">
+                                                        <h2 class="lg:text-[32px] text-[20px] font-semibold">Experience Élégance</h2>
+                                                        <p class="font-medium lg:text-[16px] text-[13px] lg:-mt-1 ">Discover the artistry behind our collections and the stories of the women who wear
+                                                          them</p>
+                                                      </div>
 
-                                                  <div class="lg:mt-8 mt-5 relative">
-                                                    <img class="lg:h-[480px] h-[200px] w-full lg:rounded-xl rounded-md object-cover object-center" src="./images/video.jpg" alt="">
+                                                      <div class="lg:mt-8 mt-5 relative">
+                                                        <img class="lg:h-[480px] h-[200px] w-full lg:rounded-xl rounded-md object-cover object-center" src="./images/video.jpg" alt="">
 
-                                                    <div class="inline-block absolute top-1/2 cursor-pointer -translate-y-1/2 left-1/2 -translate-x-1/2">
-                                                      <span class=" bg-[#fff] text-[#FF71A8] lg:h-[55px] lg:w-[55px] w-[45px] h-[45px] rounded-full flex justify-center items-center">
-                                                        <i class="fa-solid fa-play text-[18px]  lg:text-[20px] "></i>
-                                                      </span>
-                                                    </div>
+                                                        <div class="inline-block absolute top-1/2 cursor-pointer -translate-y-1/2 left-1/2 -translate-x-1/2">
+                                                          <span class=" bg-[#fff] text-[#FF71A8] lg:h-[55px] lg:w-[55px] w-[45px] h-[45px] rounded-full flex justify-center items-center">
+                                                            <i class="fa-solid fa-play text-[18px]  lg:text-[20px] "></i>
+                                                          </span>
+                                                        </div>
 
-                                                  </div>
+                                                      </div>
 
-                                                  <div class="grid grid-cols-3 lg:mt-12 mt-6 lg:px-10 px-0">
-                                                    <div class="col-span-1 text-center">
-                                                      <h2 class="lg:text-[36px] text-[20px] font-medium">500+</h2>
-                                                      <p class="font-medium lg:text-[16px] text-[12px] lg:-mt-2"> Unique Designs</p>
-                                                    </div>
+                                                      <div class="grid grid-cols-3 lg:mt-12 mt-6 lg:px-10 px-0">
+                                                        <div class="col-span-1 text-center">
+                                                          <h2 class="lg:text-[36px] text-[20px] font-medium">500+</h2>
+                                                          <p class="font-medium lg:text-[16px] text-[12px] lg:-mt-2"> Unique Designs</p>
+                                                        </div>
 
-                                                    <div class="col-span-1 text-center">
-                                                      <h2 class="lg:text-[36px] text-[20px]  font-medium">10K+</h2>
-                                                      <p class="font-medium lg:text-[16px] text-[12px] lg:-mt-2"> Happy Customer</p>
-                                                    </div>
+                                                        <div class="col-span-1 text-center">
+                                                          <h2 class="lg:text-[36px] text-[20px]  font-medium">10K+</h2>
+                                                          <p class="font-medium lg:text-[16px] text-[12px] lg:-mt-2"> Happy Customer</p>
+                                                        </div>
 
-                                                    <div class="col-span-1 text-center">
-                                                      <h2 class="lg:text-[36px] text-[20px]  font-medium">25+</h2>
-                                                      <p class="font-medium lg:text-[16px] text-[12px] lg:-mt-2"> Years of Excellence</p>
-                                                    </div>
-                                                  </div>
-                                                </section> -->
+                                                        <div class="col-span-1 text-center">
+                                                          <h2 class="lg:text-[36px] text-[20px]  font-medium">25+</h2>
+                                                          <p class="font-medium lg:text-[16px] text-[12px] lg:-mt-2"> Years of Excellence</p>
+                                                        </div>
+                                                      </div>
+                                                    </section> -->
 
     <!-- testimonials section  -->
 

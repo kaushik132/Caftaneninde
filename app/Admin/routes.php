@@ -24,4 +24,8 @@ Route::group([
 
     $router->resource('seos', SeoController::class);
 
+    $router->resource('contact-messages', ContactMessagesController::class);
+
+    $router->resource('orders', OrderController::class);
+
 });

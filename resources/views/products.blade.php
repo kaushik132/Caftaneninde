@@ -223,9 +223,9 @@
               <h3 class="text-[15px] font-semibold text-gray-800 truncate">{{ $product->name }}</h3>
 
               <div class="flex items-center gap-2 mt-2">
-                <p class="text-[#FF71A8] font-bold text-[17px]">${{ number_format($price, 2) }}</p>
+                <p class="text-[#FF71A8] font-bold text-[17px]" data-usd="{{ $price }}">${{ number_format($price, 2) }}</p>
                 @if($product->sale_price)
-                  <p class="text-gray-400 text-[13px] line-through">${{ number_format($product->price, 2) }}</p>
+                  <p class="text-gray-400 text-[13px] line-through" data-usd="{{ $product->price }}">${{ number_format($product->price, 2) }}</p>
                 @endif
               </div>
             </div>
